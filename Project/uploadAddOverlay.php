@@ -11,20 +11,29 @@
 <?php
 
 if ( isset( $_POST["sendPhoto"] ) ) {
-  processForm();
+    processForm();
 } else {
   displayForm();
 }
+      
+
+function countPictures() {      
+    $f = new FilesystemIterator("photos/", FilesystemIterator::SKIP_DOTS);
+    return iterator_count($f);      
+}
+      
 
 function processForm() {
+    $nbrOfPics = countPictures();
+    $newFileName = $nbrOfPics + 1 .".jpg";
   if ( isset( $_FILES["photo"] ) and $_FILES["photo"]["error"] == UPLOAD_ERR_OK ) {
     if ( $_FILES["photo"]["type"] != "image/jpeg" ) {
       echo "<p>JPEG photos only, thanks!</p>";
-    } elseif ( !move_uploaded_file( $_FILES["photo"]["tmp_name"], "photos/" . basename( $_FILES["photo"]["name"] ) ) ) {
-      echo "<p>Sorry, there was a problem uploading that photo.</p>" . $_FILES["photo"]["error"] ;
+        } elseif ( !move_uploaded_file( $_FILES["photo"]["tmp_name"], "photos/" . $newFileName) ) { 
+              echo "<p>Sorry, there was a problem uploading that photo.</p>" . $_FILES["photo"]["error"] ;
     } else {
-        addOverlay();
-        displayThanks();
+        addOverlay($newFileName);
+        displayThanks($newFileName);
     }
   } else {
     switch( $_FILES["photo"]["error"] ) {
@@ -69,59 +78,62 @@ function displayForm() {
 <?php
 }
 
-function displayThanks() {
+function displayThanks(&$newFileName) {
 ?>
     <h1>Thank You</h1>
     <p>Thanks for uploading your photo<?php if ( $_POST["visitorName"] ) echo ", " . $_POST["visitorName"] ?>!</p>
     <p>Here's your photo:</p>
-    <p><img src="photos/<?php echo $_FILES["photo"]["name"] ?>" alt="Photo" /></p>
+
+    <p><img src="photos/<?php echo $newFileName ?>" alt="Photo" /></p>
+      
+      
+    <a href="index.php">Back to first screen</a>
 <?php
 }
 
       
-function addOverlay() {  
+function addOverlay(&$newFileName) {  
 // Changed by Group 5, Case 2 (Petra, Sara Fee, Thomas, Viktor)
 // Based on Brors "polaroid" example
 // which was based on Doyles watermark example chap 17
     
 //Get the image the user has uploaded    
-$myImage = imagecreatefromjpeg(  "photos/" . basename( $_FILES["photo"]["name"]));
-$overlay = imagecreatefrompng( "OverlayPictures.png" );
-$myColor = imagecolorallocate( $myImage, 255, 255, 255 );
+    $myImage = imagecreatefromjpeg( "photos/" . $newFileName);
+    $overlay = imagecreatefrompng( "OverlayPictures.png" );
+    $myColor = imagecolorallocate( $myImage, 255, 255, 255 );
 
-$destWidth = imagesx( $myImage );
-$destHeight = imagesy( $myImage );
-//scale the Overlay to the width of the original image and 1/10 of the height
-$overlay = imagescale($overlay, $destWidth, $destHeight/10);
+    $destWidth = imagesx( $myImage );
+    $destHeight = imagesy( $myImage );
+    //scale the Overlay to the width of the original image and 1/10 of the height
+    $overlay = imagescale($overlay, $destWidth, $destHeight/10);
 
-//Size of the Overlay
-$srcWidth = imagesx( $overlay );
-$srcHeight = imagesy( $overlay );
+    //Size of the Overlay
+    $srcWidth = imagesx( $overlay );
+    $srcHeight = imagesy( $overlay );
 
-// next 7 lines to crop the image
-// are from  http://php.net/manual/en/function.imagecrop.php
-$crop_measure = min($destHeight, $destWidth);
-$offsetX= ($destWidth-$crop_measure)/2;
-$offsetY= ($destHeight-$crop_measure)/2;
-$to_crop_array = array('x' => (0+$offsetX) , 'y' => (0+$offsetY), 'width' => $crop_measure, 'height'=> $crop_measure);
-$myImage = imagecrop($myImage, $to_crop_array);
-$destWidth = imagesx( $myImage );
-$destHeight = imagesy( $myImage );
+    // next 7 lines to crop the image
+    // are from  http://php.net/manual/en/function.imagecrop.php
+    $crop_measure = min($destHeight, $destWidth);
+    $offsetX= ($destWidth-$crop_measure)/2;
+    $offsetY= ($destHeight-$crop_measure)/2;
+    $to_crop_array = array('x' => (0+$offsetX) , 'y' => (0+$offsetY), 'width' => $crop_measure, 'height'=> $crop_measure);
+    $myImage = imagecrop($myImage, $to_crop_array);
+    $destWidth = imagesx( $myImage );
+    $destHeight = imagesy( $myImage );
 
+    //Positions the overlay down
+    $destX = 0;
+    $destY = ($destHeight - $srcHeight);
 
-//Positions the overlay down
-$destX = 0;
-$destY = ($destHeight - $srcHeight);
+    //merge the image with the overlay
+    imagecopymerge( $myImage, $overlay, $destX, $destY, 0, 0, $srcWidth, $srcHeight, 79 );
+    //save it on the server
+    imagejpeg( $myImage,"photos/".$newFileName);
 
-//merge the image with the overlay
-imagecopymerge( $myImage, $overlay, $destX, $destY, 0, 0, $srcWidth, $srcHeight, 79 );
-//save it on the server
-imagejpeg( $myImage,"photos/" . basename( $_FILES["photo"]["name"] ));
-    
-     
 }
       
 ?>      
+     
 
   </body>
 </html>
