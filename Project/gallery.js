@@ -1,11 +1,14 @@
 //Only jpegs are uploaded
 var jpgcontainer = document.getElementById('jpg');
 
+var nbrOfFiles = $('#nbr').text();
+
 var files = {
-  'jpg': 30
+  'jpg': nbrOfFiles
 };
 
 //Go trough each existing picture
+//for (var jpgext in files) {
 for (var jpgext in files) {
   for (var i = 0; i < files[jpgext]; i++) {
     var jpgsrc = "./Photos/" + (i + 1) + "." + jpgext;
@@ -15,8 +18,8 @@ for (var jpgext in files) {
   }
 }
 
-        
+
 
         
-        
-        
+
+      

@@ -32,6 +32,8 @@
 	<h2>Gallery</h2>
     <br/>
     <br/>
+    
+    <?php include ("transferNbr.php"); ?>
 
     <div id="imgcontainer">
         <section id="jpg"></section>
