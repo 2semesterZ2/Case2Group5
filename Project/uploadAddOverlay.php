@@ -107,12 +107,6 @@ function addOverlay(&$newFileName) {
 
     $destWidth = imagesx( $myImage );
     $destHeight = imagesy( $myImage );
-    //scale the Overlay to the width of the original image and 1/10 of the height
-    $overlay = imagescale($overlay, $destWidth, $destHeight/10);
-
-    //Size of the Overlay
-    $srcWidth = imagesx( $overlay );
-    $srcHeight = imagesy( $overlay );
 
     // next 7 lines to crop the image
     // are from  http://php.net/manual/en/function.imagecrop.php
@@ -124,6 +118,14 @@ function addOverlay(&$newFileName) {
     $destWidth = imagesx( $myImage );
     $destHeight = imagesy( $myImage );
 
+    
+    //scale the Overlay to the width of the original image and 1/10 of the height
+    $overlay = imagescale($overlay, $destWidth, $destHeight/6);
+
+    //Size of the Overlay
+    $srcWidth = imagesx( $overlay );
+    $srcHeight = imagesy( $overlay );
+    
     //Positions the overlay down
     $destX = 0;
     $destY = ($destHeight - $srcHeight);
