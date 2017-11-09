@@ -11,7 +11,7 @@ var files = {
 //for (var jpgext in files) {
 for (var jpgext in files) {
   for (var i = 0; i < files[jpgext]; i++) {
-    var jpgsrc = "./Photos/" + (i + 1) + "." + jpgext;
+    var jpgsrc = "photos/" + (i + 1) + "." + jpgext;
     var jpgimg = new Image();
     jpgimg.src = jpgsrc;
     jpgcontainer.appendChild(jpgimg);
