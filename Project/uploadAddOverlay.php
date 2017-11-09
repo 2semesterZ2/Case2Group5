@@ -55,7 +55,7 @@ function processForm() {
 
 function displayForm() {
 ?>
-    <h3>Uploading a Photo</h3>
+    <h2>Uploading a Photo</h2>
 
     <p>Please enter your name and choose a photo to upload, then click Send Photo.</p>
 
@@ -84,7 +84,9 @@ function displayThanks(&$newFileName) {
     <p>Thanks for uploading your photo<?php if ( $_POST["visitorName"] ) echo ", " . $_POST["visitorName"] ?>!</p>
     <p>Here's your photo:</p>
 
+    
     <p><img src="photos/<?php echo $newFileName ?>" alt="Photo" /></p>
+
       
       
     <a href="index.php">Back to first screen</a>

@@ -14,19 +14,31 @@
 
 	<header class="header">
 		<img src="https://upload.wikimedia.org/wikipedia/en/7/71/Bauhaus_logo.svg" alt="Bauhaus Logo" >
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 
 	</header><!-- .header-->
 
 	<main class="content">
 
-        <h1>Upload your creations to inspire others!</h1>
+        <h1>Share your project and win a gift card!</h1> <!-- Upload your creations to inspire others!-->
         <br/>
         <p>
+        <p> Have you tried to do any of our DIY projects? <br/>
+            Show it to us! <br/>
+            The best projects will be displayed on our Info-Haus panels. You can win a gift card and also inspire others.
+        </p>
+        <br/>
+        <br/>
+            
         <?php include ("uploadAddOverlay.php"); ?>
 
         </p>
+        
+        
         <br/>
-        <h2>Gallery</h2>
+          <br/>
+       
+        <h2>See our customer's creations here.</h2>
         <br/>
         <br/>
 
@@ -38,12 +50,10 @@
 
         <br/>
         <br/>
-        <section>Just some random description text about how cool it is, that everybody can upload his pictures and who knows what. 
-        Oh, and the text ist veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeery long. Because otherwise this f*****ing footer will keep hidding it.</section>
+        
 
 
         <script src="gallery.js"></script>
-        <br/>
         
 	</main><!-- .content -->
 	

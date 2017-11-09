@@ -15,9 +15,10 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	font-size: 150%;
 	font: inherit;
 	vertical-align: baseline;
+    font-family: 'Roboto', sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -64,11 +65,31 @@ body {
 
 /*headline*/
 h1 {
-    font-weight: 200;
-    font-size: 150%;
+    font-weight: 350;
+    font-size: 200%;
     padding-top: 30px;
+    text-align: center;
+    
 }
 
+h2 {
+    font-weight: 250;
+    font-size: 150%;
+    padding-top: 15px;
+}
+
+div {
+   text-align: center; 
+}
+
+p {
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    text-align: center;
+}
 
 /* Header
 -----------------------------------------------------------------------------*/
@@ -107,6 +128,7 @@ h1 {
     right: 0;
     bottom: 0;
 	padding: 10px;
+    
 }
 
 /*Gallery*/
