@@ -58,6 +58,7 @@ function displayForm() {
     <h2>Uploading a Photo</h2>
 
     <p>Please enter your name and choose a photo to upload, then click Send Photo.</p>
+      <br/>
 
     <form action="uploadAddOverlay.php" method="post" enctype="multipart/form-data">
       <div style="width: 30em;">
@@ -65,10 +66,10 @@ function displayForm() {
 
         <label for="visitorName">Your name</label>
         <input type="text" name="visitorName" id="visitorName" value="" />
-
+          <br/>
         <label for="photo">Your photo</label>
         <input type="file" name="photo" id="photo" value="" />
-
+          <br/>
         <div style="clear: both;">
           <input type="submit" name="sendPhoto" value="Send Photo" />
         </div>
