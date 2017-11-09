@@ -47,7 +47,7 @@ table {
 html {
 	height: 100%;
 }
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+article, aside, details, figcaption, figure, header, hgroup, main, nav, section, summary {
 	display: block;
 }
 body {
@@ -62,26 +62,36 @@ body {
 	height: 100%;
 }
 
+/*headline*/
+h1 {
+    font-weight: 200;
+    font-size: 150%;
+    padding-top: 30px;
+}
+
 
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
 	height: 150px;
-	background: #cb3203;
+	background: #EE1F26;
 }
+
 .header img {
 	height: 50%;
 	width: 50%;
-padding: 10px;
-float: left;
-clear: both;
+    padding: 10px;
+    float: left;
+    clear: both;
 }
 
 
 /* Middle
 -----------------------------------------------------------------------------*/
 .content {
-	padding: 0 0 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width:  70vw;
 }
 
 
@@ -90,10 +100,22 @@ clear: both;
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-	margin: -100px auto 0;
-	min-width: 1000px;
-	height: 100px;
-	background: #cb3203;
-	position: relative;
+	width:  100vw;
+	height: 50px;
+	background: #EE1F26;
+	position: static;
+    right: 0;
+    bottom: 0;
 	padding: 10px;
+}
+
+/*Gallery*/
+img {
+    padding: 5px;
+    height: 250px;
+    width: 250px;
+}
+
+#nbr{
+    display: none;
 }

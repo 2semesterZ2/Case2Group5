@@ -55,7 +55,7 @@ function processForm() {
 
 function displayForm() {
 ?>
-    <h1>Uploading a Photo</h1>
+    <h3>Uploading a Photo</h3>
 
     <p>Please enter your name and choose a photo to upload, then click Send Photo.</p>
 
